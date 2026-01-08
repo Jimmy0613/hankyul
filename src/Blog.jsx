@@ -45,7 +45,12 @@ function App() {
   {posts.map((post, idx) => (
     <div key={idx} style={{ border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
       {/* 썸네일 이미지 */}
-      <img src={post.thumbnail} alt={post.title} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+      <img
+          src={post.thumbnail}
+          alt={post.title}
+          referrerPolicy="no-referrer"
+          style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+      />
 
       <div style={{ padding: '15px' }}>
         <h3 style={{ fontSize: '18px', margin: '0 0 10px' }}>{post.title}</h3>
