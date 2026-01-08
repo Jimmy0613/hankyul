@@ -1,17 +1,15 @@
-// functions/rss.js
 export async function onRequest(context) {
   const url = new URL(context.request.url);
 
-  // URL에서 '/rss/' 이후의 모든 문자열을 가져옵니다.
-  // 예: https://hankyul.pages.dev/rss/attorney_hambok.xml -> attorney_hambok.xml
-  const pathParts = url.pathname.split('/rss/');
-  const targetPath = pathParts[1];
+  // url.pathname이 "/rss/attorney_hambok.xml" 형태일 때
+  // /rss/ 부분을 제외한 나머지 파일명만 추출합니다.
+  const targetId = url.pathname.replace('/rss/', '');
 
-  if (!targetPath) {
-    return new Response("RSS 아이디(파일명)가 누락되었습니다.", { status: 400 });
+  if (!targetId || targetId === '/rss') {
+    return new Response("RSS 아이디가 없습니다.", { status: 400 });
   }
 
-  const targetUrl = `https://rss.blog.naver.com/${targetPath}`;
+  const targetUrl = `https://rss.blog.naver.com/${targetId}`;
 
   try {
     const response = await fetch(targetUrl, {
@@ -26,10 +24,9 @@ export async function onRequest(context) {
       headers: {
         "Content-Type": "application/xml; charset=utf-8",
         "Access-Control-Allow-Origin": "*", // CORS 해결
-        "Cache-Control": "no-cache"
       },
     });
   } catch (error) {
-    return new Response("네이버 서버 연결 실패", { status: 500 });
+    return new Response("네이버 연결 실패", { status: 500 });
   }
 }
