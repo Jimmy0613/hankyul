@@ -29,7 +29,7 @@ const BlogPage = () => {
                         link: node.querySelector("link").textContent,
                         thumbnail: imageUrl,
                         description: cleanDescription,
-                        pubDate: node.querySelector("pubDate").textContent,
+                        date: node.querySelector("pubDate").textContent,
                     };
                 });
 
@@ -59,6 +59,27 @@ const BlogPage = () => {
         }
     };
 
+    const formatDate = (dateString) => {
+        if (!dateString) return "";
+
+        const date = new Date(dateString);
+
+        // 방법 1: 2026. 01. 08 (점 구분자 방식)
+        return date.toLocaleDateString('ko-KR', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        }).replace(/\.$/, ""); // 마지막 점 제거
+
+        /* 방법 2: 2026년 1월 8일 (한글 방식)이 좋다면 아래 주석을 해제하세요.
+        return date.toLocaleDateString('ko-KR', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        });
+        */
+    };
+
     return (
         <>
             <section id="services" className="services section">
@@ -78,39 +99,42 @@ const BlogPage = () => {
                                 data-aos-delay={(idx + 1) * 100}
                             >
                                 <div className="service-item position-relative">
-                                    {/* 썸네일 이미지가 있다면 표시, 없다면 기본 아이콘 */}
-                                    <div className="mb-3" style={{overflow: 'hidden', borderRadius: '8px'}}>
-                                        <img
-                                            src={getImageUrl(post.thumbnail)}
-                                            alt={post.title}
-                                            onError={(e) => {
-                                                // 무한 루프 완전 차단: 이 핸들러 자체를 제거
-                                                e.target.onerror = null;
-                                                // 기본 이미지로 교체 (public 폴더에 있는 실제 경로여야 함)
-                                                e.target.src = noimage;
+                                    <div className="blog-card">
+                                        <div className="blog-image-wrapper">
+                                            <img
+                                                src={getImageUrl(post.thumbnail)}
+                                                alt={post.title}
+                                                onError={(e) => {
+                                                    // 무한 루프 완전 차단: 이 핸들러 자체를 제거
+                                                    e.target.onerror = null;
+                                                    // 기본 이미지로 교체 (public 폴더에 있는 실제 경로여야 함)
+                                                    e.target.src = noimage;
 
-                                                // 로컬에서 엑박 뜨는게 보기 싫다면 콘솔로그로 확인
-                                                console.warn("이미지 로드 실패:", e.target.src);
-                                            }}
-                                            referrerPolicy="no-referrer" // 로컬에서 네이버 이미지를 직접 볼 때 그나마 도움이 됨
-                                        />
-                                    </div>
+                                                    // 로컬에서 엑박 뜨는게 보기 싫다면 콘솔로그로 확인
+                                                    console.warn("이미지 로드 실패:", e.target.src);
+                                                }}
+                                                referrerPolicy="no-referrer" // 로컬에서 네이버 이미지를 직접 볼 때 그나마 도움이 됨
+                                            />
+                                        </div>
+                                        <div className="blog-content">
+                                            <span className="blog-date">{formatDate(post.date)}</span>
+                                            <a href={post.link} target="_blank" rel="noreferrer"
+                                               className="stretched-link">
+                                                <h3>{post.title}</h3>
+                                            </a>
+                                            <p className="blog-description">
+                                                {/* 본문 요약이 있다면 짧게 제한 */}
+                                                {post.description.length > 100
+                                                    ? `${post.description.substring(0, 100)}...`
+                                                    : post.description}
+                                            </p>
+                                            {/* 템플릿 스타일의 화살표 버튼 (옵션) */}
+                                            <div className="mt-3"
+                                                 style={{fontSize: '14px', color: 'var(--accent-color)'}}>
+                                                더 보기 <i className="bi bi-arrow-right"></i>
+                                            </div>
+                                        </div>
 
-                                    {/* 제목: 클릭 시 네이버 블로그로 이동 */}
-                                    <a href={post.link} target="_blank" rel="noreferrer" className="stretched-link">
-                                        <h3>{post.title}</h3>
-                                    </a>
-
-                                    {/* 요약 내용 */}
-                                    <p>
-                                        {post.description.length > 100
-                                            ? `${post.description.substring(0, 100)}...`
-                                            : post.description}
-                                    </p>
-
-                                    {/* 템플릿 스타일의 화살표 버튼 (옵션) */}
-                                    <div className="mt-3" style={{fontSize: '14px', color: 'var(--accent-color)'}}>
-                                        더 보기 <i className="bi bi-arrow-right"></i>
                                     </div>
                                 </div>
                             </div>
