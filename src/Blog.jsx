@@ -46,7 +46,7 @@ function App() {
     <div key={idx} style={{ border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
       {/* 썸네일 이미지 */}
       <img
-          src={post.thumbnail}
+          src={`/image-proxy?url=${encodeURIComponent(post.thumbnail)}`}
           alt={post.title}
           referrerPolicy="no-referrer"
           style={{ width: '100%', height: '200px', objectFit: 'cover' }}
