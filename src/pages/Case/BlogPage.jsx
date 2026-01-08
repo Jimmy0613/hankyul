@@ -41,6 +41,24 @@ const BlogPage = () => {
         fetchRSS();
     }, []);
 
+    const getImageUrl = (thumbnail) => {
+        // 1. 이미지가 없거나 잘못된 경우 기본 이미지
+        if (!thumbnail || thumbnail === 'undefined') {
+            return noimage;
+        }
+
+        // 2. 환경별 주소 설정
+        const isLocal = window.location.hostname === 'localhost';
+
+        if (isLocal) {
+            // 로컬에서는 프록시를 쓸 수 없으므로 네이버 주소 그대로 사용 (단, 엑박은 뜰 수 있음)
+            return thumbnail;
+        } else {
+            // 배포 환경(Cloudflare)에서는 우리가 만든 프록시 사용
+            return `/image-proxy?url=${encodeURIComponent(thumbnail)}`;
+        }
+    };
+
     return (
         <>
             <section id="services" className="services section">
@@ -63,9 +81,18 @@ const BlogPage = () => {
                                     {/* 썸네일 이미지가 있다면 표시, 없다면 기본 아이콘 */}
                                     <div className="mb-3" style={{overflow: 'hidden', borderRadius: '8px'}}>
                                         <img
-                                            src={post.thumbnail ? post.thumbnail : noimage}
+                                            src={getImageUrl(post.thumbnail)}
                                             alt={post.title}
-                                            style={{width: '100%', height: '200px', objectFit: 'cover'}}
+                                            onError={(e) => {
+                                                // 무한 루프 완전 차단: 이 핸들러 자체를 제거
+                                                e.target.onerror = null;
+                                                // 기본 이미지로 교체 (public 폴더에 있는 실제 경로여야 함)
+                                                e.target.src = noimage;
+
+                                                // 로컬에서 엑박 뜨는게 보기 싫다면 콘솔로그로 확인
+                                                console.warn("이미지 로드 실패:", e.target.src);
+                                            }}
+                                            referrerPolicy="no-referrer" // 로컬에서 네이버 이미지를 직접 볼 때 그나마 도움이 됨
                                         />
                                     </div>
 
