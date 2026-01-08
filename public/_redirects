@@ -1,0 +1,5 @@
+/* /index.html  200
+
+/rss/* https://rss.blog.naver.com/:splat  200
+
+/api/* https://openapi.naver.com/:splat 200
