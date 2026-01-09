@@ -1,27 +1,18 @@
 // App.jsx 최상단
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
+import {useEffect} from 'react';
+
+import AOS from 'aos';
+import Isotope from 'isotope-layout';
+import Swiper from 'swiper';
+import imagesLoaded from 'imagesloaded';
+import PureCounter from '@srexi/purecounterjs';
+
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Breadcrumb from './components/layout/Breadcrumb';
 import Home from './pages/Home';
 import HelloPage from './pages/About/HelloPage';
-
-import {useEffect} from 'react';
-import AOS from 'aos';
-import GLightbox from 'glightbox';
-import Isotope from 'isotope-layout';
-import Swiper from 'swiper';
-import imagesLoaded from 'imagesloaded';
-import PureCounter from '@srexi/purecounterjs'
-
-// CSS
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import 'aos/dist/aos.css';
-import 'glightbox/dist/css/glightbox.min.css';
-import 'swiper/css/bundle';
-
-import './assets/css/main.css'
 import TeamPage from "./pages/About/TeamPage.jsx";
 import SpecialPage from "./pages/About/SpecialPage.jsx";
 import ServicePage from "./pages/Service/ServicePage.jsx";
@@ -36,6 +27,16 @@ function App() {
         "use strict";
 
         /**
+         * Animation on scroll function and init
+         */
+        AOS.init({
+            duration: 600,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+
+        /**
          * Apply .scrolled class to the body as the page is scrolled down
          */
         function toggleScrolled() {
@@ -48,7 +49,7 @@ function App() {
         }
 
         document.addEventListener('scroll', toggleScrolled);
-        window.addEventListener('load', toggleScrolled);
+        toggleScrolled();
 
         /**
          * Mobile nav toggle
@@ -108,23 +109,8 @@ function App() {
             });
         });
 
-        window.addEventListener('load', toggleScrollTop);
         document.addEventListener('scroll', toggleScrollTop);
-
-        /**
-         * Animation on scroll function and init
-         */
-        function aosInit() {
-            AOS.init({
-                duration: 600,
-                easing: 'ease-in-out',
-                once: true,
-                mirror: false
-            });
-        }
-
-        window.addEventListener('load', aosInit);
-
+        toggleScrollTop();
 
         /**
          * Init swiper sliders
@@ -138,7 +124,7 @@ function App() {
             });
         }
 
-        window.addEventListener("load", initSwiper);
+        initSwiper();
 
         /**
          * Init isotope layout and filters
@@ -152,7 +138,7 @@ function App() {
 
             const container = isotopeItem.querySelector('.isotope-container');
             if (container) {
-                imagesLoaded(container, function() {
+                imagesLoaded(container, function () {
                     initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
                         itemSelector: '.isotope-item',
                         layoutMode: layout,
@@ -224,31 +210,38 @@ function App() {
             })
         }
 
-        window.addEventListener('load', navmenuScrollspy);
+        navmenuScrollspy();
         document.addEventListener('scroll', navmenuScrollspy);
+
+        return () => {
+            document.removeEventListener('scroll', toggleScrolled);
+            document.removeEventListener('scroll', toggleScrollTop);
+            document.removeEventListener('scroll', navmenuScrollspy);
+
+        };
     }, []);
 
     return (
         <Router>
-            <Header />
+            <Header/>
             <main className="main">
-                <Breadcrumb />
+                <Breadcrumb/>
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/About" element={<Navigate to="/About/hello" replace/>} />
-                    <Route path="/Case" element={<Navigate to="/Case/blog" replace/>} />
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/About" element={<Navigate to="/About/hello" replace/>}/>
+                    <Route path="/Case" element={<Navigate to="/Case/blog" replace/>}/>
 
-                    <Route path="/About/hello" element={<HelloPage/>} />
-                    <Route path="/About/team" element={<TeamPage/>} />
-                    <Route path="/About/special" element={<SpecialPage/>} />
-                    <Route path="/Service" element={<ServicePage/>} />
-                    <Route path="/Directions" element={<DirectionsPage/>} />
-                    <Route path="/Case/blog" element={<BlogPage/>} />
-                    <Route path="/Case/success" element={<SuccessPage/>} />
+                    <Route path="/About/hello" element={<HelloPage/>}/>
+                    <Route path="/About/team" element={<TeamPage/>}/>
+                    <Route path="/About/special" element={<SpecialPage/>}/>
+                    <Route path="/Service" element={<ServicePage/>}/>
+                    <Route path="/Directions" element={<DirectionsPage/>}/>
+                    <Route path="/Case/blog" element={<BlogPage/>}/>
+                    <Route path="/Case/success" element={<SuccessPage/>}/>
 
                 </Routes>
             </main>
-            <Footer />
+            <Footer/>
             {/* Scroll Top */}
             <a href="#" id="scroll-top" className="scroll-top d-flex align-items-center justify-content-center"><i
                 className="bi bi-arrow-up-short"></i></a>
