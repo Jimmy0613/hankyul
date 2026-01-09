@@ -90,16 +90,6 @@ function App() {
         });
 
         /**
-         * Preloader
-         */
-        const preloader = document.querySelector('#preloader');
-        if (preloader) {
-            window.addEventListener('load', () => {
-                preloader.remove();
-            });
-        }
-
-        /**
          * Scroll top button
          */
         let scrollTop = document.querySelector('.scroll-top');
@@ -262,9 +252,6 @@ function App() {
             {/* Scroll Top */}
             <a href="#" id="scroll-top" className="scroll-top d-flex align-items-center justify-content-center"><i
                 className="bi bi-arrow-up-short"></i></a>
-
-            {/* Preloader */}
-            <div id="preloader"></div>
         </Router>
     );
 }
