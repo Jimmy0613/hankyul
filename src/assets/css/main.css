@@ -322,8 +322,7 @@ h6 {
   font-size: 32px;
 }
 
-.header .btn-getstarted,
-.header .btn-getstarted:focus {
+.header .btn-getstarted {
   color: var(--contrast-color);
   font-size: 14px;
   padding: 8px 30px;
@@ -331,12 +330,6 @@ h6 {
   border-radius: 4px;
   transition: 0.3s;
   border: 2px solid var(--accent-color);
-}
-
-.header .btn-getstarted:hover,
-.header .btn-getstarted:focus:hover {
-  color: var(--default-color);
-  background: var(--accent-color);
 }
 
 @media (max-width: 1200px) {
@@ -412,10 +405,6 @@ h6 {
     line-height: 0;
     margin-left: 5px;
     transition: 0.3s;
-  }
-
-  .navmenu li:last-child a {
-    padding-right: 0;
   }
 
   .navmenu li:hover>a,
@@ -547,7 +536,7 @@ h6 {
   }
 
   .navmenu a:hover,
-  .navmenu .active,
+  .navmenu a.active,
   .navmenu .active:focus {
     background-color: var(--nav-dropdown-hover-color);
   }
@@ -605,6 +594,30 @@ h6 {
   }
 }
 
+/* 1. 드롭다운 부모 메뉴가 active일 때 배경색 제거 */
+/* 상위 메뉴가 active 클래스를 가져도 배경색을 투명하게 만듭니다. */
+.navmenu li.dropdown > a.active {
+    background-color: transparent !important;
+    color: var(--nav-color); /* 원래 글자색으로 */
+}
+
+/* 2. 대신 글자색이나 아이콘 색상만 살짝 강조하고 싶다면 (선택 사항) */
+.navmenu li.dropdown > a.active span {
+    color: var(--accent-color); /* 글자만 주황색으로 */
+}
+
+/* 3. 드롭다운 '안에 있는' 진짜 서브 메뉴 링크만 주황색 배경 유지 */
+.navmenu .dropdown ul a.active {
+    background-color: var(--accent-color) !important;
+    color: #ffffff !important;
+    border-radius: 4px;
+}
+
+/* 4. 드롭다운이 없는 일반 메뉴(오시는 길 등)의 배경색 유지 */
+.navmenu li:not(.dropdown) > a.active {
+    background-color: var(--accent-color) !important;
+    color: #ffffff !important;
+}
 /*--------------------------------------------------------------
 # Global Footer
 --------------------------------------------------------------*/
@@ -1603,9 +1616,9 @@ section,
   font-weight: 600;
 }
 .custom-tabs .nav-link.active {
-  color: var(--accent-color); /* 템플릿의 포인트 컬러 */
-  border-bottom: 3px solid var(--accent-color);
-  background: none;
+  color: var(--accent-color) !important; /* 템플릿의 포인트 컬러 */
+  border-bottom: 3px solid var(--accent-color) !important;
+  background: none !important;
 }
 .tab-content {
   min-height: 200px;
@@ -1974,4 +1987,18 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+/* 기본적으로(PC)는 줄바꿈을 하지 않음 */
+.mobile-br {
+    display: none;
+}
+
+/* 모바일 화면(768px 미만)에서만 줄바꿈 실행 */
+@media (max-width: 767px) {
+    .mobile-br {
+        display: block;
+        content: ""; /* 가끔 브라우저 특성상 필요할 때가 있음 */
+        margin-top: 10px; /* 줄바꿈 후 간격을 조절하고 싶을 때 사용 */
+    }
 }

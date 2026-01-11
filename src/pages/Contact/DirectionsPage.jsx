@@ -7,7 +7,7 @@ const DirectionsPage = () => {
 
                 <div className="container" data-aos="fade-up" data-aos-delay="100">
 
-                    <div className="row gy-4 py-5 px-5">
+                    <div className="row">
 
                         <div className="col-lg-6" data-aos="fade-up" data-aos-delay="200">
                             <div className="mb-4">

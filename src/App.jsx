@@ -1,10 +1,9 @@
 // App.jsx 최상단
-import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, Navigate, Outlet} from 'react-router-dom';
 import {useEffect} from 'react';
 
 import AOS from 'aos';
 import Isotope from 'isotope-layout';
-import Swiper from 'swiper';
 import imagesLoaded from 'imagesloaded';
 import PureCounter from '@srexi/purecounterjs';
 
@@ -15,10 +14,15 @@ import Home from './pages/Home';
 import HelloPage from './pages/About/HelloPage';
 import TeamPage from "./pages/About/TeamPage.jsx";
 import SpecialPage from "./pages/About/SpecialPage.jsx";
-import ServicePage from "./pages/Service/ServicePage.jsx";
-import DirectionsPage from "./pages/Directions/DirectionsPage.jsx";
+import ServiceMedicalPage from "./pages/Service/ServiceMedicalPage.jsx";
+import DirectionsPage from "./pages/Contact/DirectionsPage.jsx";
 import BlogPage from "./pages/Case/BlogPage.jsx";
 import SuccessPage from "./pages/Case/SuccessPage.jsx";
+import ServiceSchoolPage from "./pages/Service/ServiceSchoolPage.jsx";
+import ServiceLayout from "./pages/Service/ServiceLayout.jsx";
+import ServiceCriminalPage from "./pages/Service/ServiceCriminalPage.jsx";
+import ServiceCivilPage from "./pages/Service/ServiceCivilPage.jsx";
+import BookPage from "./pages/Contact/BookPage.jsx";
 
 function App() {
 
@@ -35,96 +39,6 @@ function App() {
             once: true,
             mirror: false
         });
-
-        /**
-         * Apply .scrolled class to the body as the page is scrolled down
-         */
-        function toggleScrolled() {
-            const selectBody = document.querySelector('body');
-            const selectHeader = document.querySelector('#header');
-            if (!selectHeader) return;
-
-            if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-            window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
-        }
-
-        document.addEventListener('scroll', toggleScrolled);
-        toggleScrolled();
-
-        /**
-         * Mobile nav toggle
-         */
-        const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
-
-        function mobileNavToogle() {
-            document.querySelector('body').classList.toggle('mobile-nav-active');
-            mobileNavToggleBtn.classList.toggle('bi-list');
-            mobileNavToggleBtn.classList.toggle('bi-x');
-        }
-
-        if (mobileNavToggleBtn) {
-            mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
-        }
-
-        /**
-         * Hide mobile nav on same-page/hash links
-         */
-        document.querySelectorAll('#navmenu a').forEach(navmenu => {
-            navmenu.addEventListener('click', () => {
-                if (document.querySelector('.mobile-nav-active')) {
-                    mobileNavToogle();
-                }
-            });
-
-        });
-
-        /**
-         * Toggle mobile nav dropdowns
-         */
-        document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-            navmenu.addEventListener('click', function (e) {
-                e.preventDefault();
-                this.parentNode.classList.toggle('active');
-                this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-                e.stopImmediatePropagation();
-            });
-        });
-
-        /**
-         * Scroll top button
-         */
-        let scrollTop = document.querySelector('.scroll-top');
-
-        function toggleScrollTop() {
-            if (scrollTop) {
-                window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
-            }
-        }
-
-        scrollTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        document.addEventListener('scroll', toggleScrollTop);
-        toggleScrollTop();
-
-        /**
-         * Init swiper sliders
-         */
-        function initSwiper() {
-            document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
-                let config = JSON.parse(
-                    swiperElement.querySelector(".swiper-config").innerHTML.trim()
-                );
-                new Swiper(swiperElement, config);
-            });
-        }
-
-        initSwiper();
 
         /**
          * Init isotope layout and filters
@@ -171,54 +85,6 @@ function App() {
          * Initiate Pure Counter
          */
         new PureCounter();
-
-        /**
-         * Correct scrolling position upon page load for URLs containing hash links.
-         */
-        window.addEventListener('load', function () {
-            if (window.location.hash) {
-                if (document.querySelector(window.location.hash)) {
-                    setTimeout(() => {
-                        let section = document.querySelector(window.location.hash);
-                        let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
-                        window.scrollTo({
-                            top: section.offsetTop - parseInt(scrollMarginTop),
-                            behavior: 'smooth'
-                        });
-                    }, 100);
-                }
-            }
-        });
-
-        /**
-         * Navmenu Scrollspy
-         */
-        let navmenulinks = document.querySelectorAll('.navmenu a');
-
-        function navmenuScrollspy() {
-            navmenulinks.forEach(navmenulink => {
-                if (!navmenulink.hash) return;
-                let section = document.querySelector(navmenulink.hash);
-                if (!section) return;
-                let position = window.scrollY + 200;
-                if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-                    document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
-                    navmenulink.classList.add('active');
-                } else {
-                    navmenulink.classList.remove('active');
-                }
-            })
-        }
-
-        navmenuScrollspy();
-        document.addEventListener('scroll', navmenuScrollspy);
-
-        return () => {
-            document.removeEventListener('scroll', toggleScrolled);
-            document.removeEventListener('scroll', toggleScrollTop);
-            document.removeEventListener('scroll', navmenuScrollspy);
-
-        };
     }, []);
 
     return (
@@ -228,16 +94,33 @@ function App() {
                 <Breadcrumb/>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
-                    <Route path="/About" element={<Navigate to="/About/hello" replace/>}/>
-                    <Route path="/Case" element={<Navigate to="/Case/blog" replace/>}/>
 
-                    <Route path="/About/hello" element={<HelloPage/>}/>
-                    <Route path="/About/team" element={<TeamPage/>}/>
-                    <Route path="/About/special" element={<SpecialPage/>}/>
-                    <Route path="/Service" element={<ServicePage/>}/>
-                    <Route path="/Directions" element={<DirectionsPage/>}/>
-                    <Route path="/Case/blog" element={<BlogPage/>}/>
-                    <Route path="/Case/success" element={<SuccessPage/>}/>
+                    <Route path="/About" element={<Outlet />}>
+                        <Route index element={<Navigate to="hello" replace />}/>
+                        <Route path="hello" element={<HelloPage/>}/>
+                        <Route path="team" element={<TeamPage/>}/>
+                        <Route path="special" element={<SpecialPage/>}/>
+                    </Route>
+
+                    <Route path="/Service" element={<ServiceLayout />}>
+                        <Route index element={<Navigate to="medical" replace />} />
+                        <Route path="medical" element={<ServiceMedicalPage />} />
+                        <Route path="school" element={<ServiceSchoolPage />} />
+                        <Route path="criminal" element={<ServiceCriminalPage />} />
+                        <Route path="civil" element={<ServiceCivilPage />} />
+                    </Route>
+
+                    <Route path="/Case" element={<Outlet />}>
+                        <Route index element={<Navigate to="blog" replace />} />
+                        <Route path="blog" element={<BlogPage/>}/>
+                        <Route path="success" element={<SuccessPage/>}/>
+                    </Route>
+
+                    <Route path="/Contact" element={<Outlet />}>
+                        <Route index element={<Navigate to="directions" replace />} />
+                        <Route path="directions" element={<DirectionsPage/>}/>
+                        <Route path="book" element={<BookPage/>}/>
+                    </Route>
 
                 </Routes>
             </main>
