@@ -16,13 +16,13 @@ const DirectionsPage = () => {
 
                         <div className="col-lg-6">
                             <div className="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                                <i className="bi bi-messenger flex-shrink-0"></i>
+                                <img src="/img/naver_box.jpg"  alt="네이버 톡톡" />
                                 <div>
                                     <h3>네이버 톡톡</h3>
                                     <p>준비중입니다.</p></div>
                             </div>
                             <div className="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                                <i className="bi bi-messenger flex-shrink-0"></i>
+                                <img src="/img/kakao_box.png" alt="카카오톡 채널" />
                                 <div>
                                     <h3>카카오톡 채팅 상담</h3>
                                     <p>준비중입니다.</p>
@@ -31,7 +31,7 @@ const DirectionsPage = () => {
                             <div className="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
                                 <i className="bi bi-telephone-fill flex-shrink-0"></i>
                                 <div>
-                                    <h3>Call me baby</h3>
+                                    <h3>전화 문의</h3>
                                     <p>032-876-2777</p>
                                 </div>
                             </div>

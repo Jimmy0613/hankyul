@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-import noimage from '/src/assets/img/clients/client-2.png';
 
 const BlogPage = () => {
     const [posts, setPosts] = useState([]);
@@ -19,7 +18,7 @@ const BlogPage = () => {
                     // 1. description(본문) 안에서 첫 번째 이미지 주소만 정규식으로 뽑아내기
                     const imgRegex = /<img[^>]+src=["']([^"']+)["']/;
                     const match = description.match(imgRegex);
-                    const imageUrl = match ? match[1] : noimage; // 이미지가 없으면 기본 이미지
+                    const imageUrl = match ? match[1] : '/img/logo_box.svg'; // 이미지가 없으면 기본 이미지
 
                     // 2. HTML 태그 제거하고 순수 텍스트만 남기기 (깔끔한 요약을 위해)
                     const cleanDescription = description.replace(/<[^>]*>?/gm, '').slice(0, 100) + "...";
@@ -44,7 +43,7 @@ const BlogPage = () => {
     const getImageUrl = (thumbnail) => {
         // 1. 이미지가 없거나 잘못된 경우 기본 이미지
         if (!thumbnail || thumbnail === 'undefined') {
-            return noimage;
+            return '/img/logo_box.svg';
         }
 
         // 2. 환경별 주소 설정
@@ -98,44 +97,39 @@ const BlogPage = () => {
                                 data-aos="fade-up"
                                 data-aos-delay={(idx + 1) * 100}
                             >
-                                <div className="service-item position-relative">
-                                    <div className="blog-card">
-                                        <div className="blog-image-wrapper">
-                                            <img
-                                                src={getImageUrl(post.thumbnail)}
-                                                alt={post.title}
-                                                onError={(e) => {
-                                                    // 무한 루프 완전 차단: 이 핸들러 자체를 제거
-                                                    e.target.onerror = null;
-                                                    // 기본 이미지로 교체 (public 폴더에 있는 실제 경로여야 함)
-                                                    e.target.src = noimage;
-
-                                                    // 로컬에서 엑박 뜨는게 보기 싫다면 콘솔로그로 확인
-                                                    console.warn("이미지 로드 실패:", e.target.src);
-                                                }}
-                                                referrerPolicy="no-referrer" // 로컬에서 네이버 이미지를 직접 볼 때 그나마 도움이 됨
-                                            />
-                                        </div>
-                                        <div className="blog-content">
-                                            <span className="blog-date">{formatDate(post.date)}</span>
-                                            <a href={post.link} target="_blank" rel="noreferrer"
-                                               className="stretched-link">
-                                                <h3>{post.title}</h3>
-                                            </a>
-                                            <p className="blog-description">
-                                                {/* 본문 요약이 있다면 짧게 제한 */}
-                                                {post.description.length > 100
-                                                    ? `${post.description.substring(0, 100)}...`
-                                                    : post.description}
-                                            </p>
-                                            {/* 템플릿 스타일의 화살표 버튼 (옵션) */}
-                                            <div className="mt-3"
-                                                 style={{fontSize: '14px', color: 'var(--accent-color)'}}>
-                                                더 보기 <i className="bi bi-arrow-right"></i>
-                                            </div>
-                                        </div>
-
+                                <div className="blog-card">
+                                    <div className="blog-image-wrapper d-flex justify-content-center">
+                                        <img
+                                            src={getImageUrl(post.thumbnail)}
+                                            alt={post.title}
+                                            onError={(e) => {
+                                                // 무한 루프 완전 차단: 이 핸들러 자체를 제거
+                                                e.target.onerror = null;
+                                                // 기본 이미지로 교체 (public 폴더에 있는 실제 경로여야 함)
+                                                e.target.src = '/img/logo_box.svg';
+                                            }}
+                                            referrerPolicy="no-referrer" // 로컬에서 네이버 이미지를 직접 볼 때 그나마 도움이 됨
+                                        />
                                     </div>
+                                    <div className="blog-content">
+                                        <span className="blog-date">{formatDate(post.date)}</span>
+                                        <a href={post.link} target="_blank" rel="noreferrer"
+                                           className="stretched-link">
+                                            <h4>{post.title}</h4>
+                                        </a>
+                                        <p className="blog-description">
+                                            {/* 본문 요약이 있다면 짧게 제한 */}
+                                            {post.description.length > 100
+                                                ? `${post.description.substring(0, 100)}...`
+                                                : post.description}
+                                        </p>
+                                        {/* 템플릿 스타일의 화살표 버튼 (옵션) */}
+                                        <div className="mt-3"
+                                             style={{fontSize: '14px', color: 'var(--accent-color)'}}>
+                                            더 보기 <i className="bi bi-arrow-right"></i>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         ))}

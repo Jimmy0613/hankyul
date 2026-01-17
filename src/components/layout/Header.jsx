@@ -59,7 +59,7 @@ const Header = () => {
             <div className="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
                 <Link to="/" className="logo d-flex align-items-center me-auto me-lg-0" onClick={closeAllMenus}>
-                    <img style={{ height: '100%'}} src="/img/logo.png" alt="로고"/>
+                    <img style={{ filter: 'brightness(0) invert(1)'}} src="/img/logo_wide.svg" alt="로고"/>
                 </Link>
 
                 <nav id="navmenu" className="navmenu">

@@ -49,13 +49,61 @@ const Footer = () => {
 
     return (
         <footer id="footer" className="footer dark-background">
-            <div className="copyright">
-                <div className="container text-center">
-                    <p>© <span>Copyright</span> 2026 <strong className="px-1 sitename">공동법률사무소 한결</strong> <span>All Rights Reserved</span>
-                    </p>
-                    <div className="credits">
-                        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            <div className="footer-top">
+                <div className="container">
+                    <div className="row gy-4">
+                        <div className="col-lg-4 col-md-6 footer-about">
+                            <a href="index.html" className="logo d-flex align-items-center">
+                                <span className="sitename">공동법률사무소 한결</span>
+                            </a>
+                            <div className="footer-contact pt-3">
+                                <p>인천 미추홀구 학익소로 63, 5층 (학익동, 신동빌딩)</p>
+                                <p className="mt-3"><strong>Tel:</strong> <span>032-876-2777</span></p>
+                                <p><strong>Fax:</strong> <span>032-876-3777</span></p>
+                                <p><strong>Email:</strong> <span>hk-lawyer@naver.com</span></p>
+                                <p><strong>사업자등록번호:</strong> <span>435-06-03388</span></p>
+                            </div>
+                        </div>
+
+                        <div className="col-lg-2 col-md-3 footer-links">
+                            <h4>About</h4>
+                            <ul>
+                                <li><i className="bi bi-chevron-right"></i> <a href="/"> Home</a></li>
+                                <li><i className="bi bi-chevron-right"></i> <a href="/About/team"> 구성원 소개</a></li>
+                                <li><i className="bi bi-chevron-right"></i> <a href="/Case/blog"> 블로그</a></li>
+                                <li><i className="bi bi-chevron-right"></i> <a href="/Case/success"> 성공사례</a></li>
+                            </ul>
+                        </div>
+
+                        <div className="col-lg-2 col-md-3 footer-links">
+                            <h4>Service</h4>
+                            <ul>
+                                <li><i className="bi bi-chevron-right"></i> <a href="/Service/medical"> 의료</a></li>
+                                <li><i className="bi bi-chevron-right"></i> <a href="/Service/school"> 학교폭력</a></li>
+                                <li><i className="bi bi-chevron-right"></i> <a href="/Service/criminal"> 형사</a></li>
+                                <li><i className="bi bi-chevron-right"></i> <a href="/Service/civil"> 민사</a></li>
+                            </ul>
+                        </div>
+
+                        <div className="col-lg-4 col-md-12 footer-newsletter">
+                            <h4>Contact</h4>
+                            <p className="mt-3"><strong>Tel:</strong> <span>032-876-2777</span></p>
+                            <div className="social-links d-flex mt-4">
+                                <a href=""><img style={{width: '100%', borderRadius: '10px'}} src="/img/naver_box.jpg"  alt="네이버 톡톡" /></a>
+                                <a href=""><img style={{width: '100%'}} src="/img/kakao_box.png" alt="카카오톡 채널" /></a>
+                            </div>
+                        </div>
+
                     </div>
+                </div>
+            </div>
+
+            <div className="container copyright text-center mt-4">
+                <p>© <span>Copyright</span> 2026 <strong className="px-1">공동법률사무소 한결</strong>
+                    <span>All Rights Reserved</span></p>
+                <div className="credits">
+                    {/* BootstrapMade 링크는 템플릿 라이선스에 따라 유지하거나 수정하시면 됩니다 */}
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                 </div>
             </div>
         </footer>
