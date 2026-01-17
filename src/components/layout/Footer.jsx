@@ -58,9 +58,8 @@ const Footer = () => {
                             </a>
                             <div className="footer-contact pt-3">
                                 <p>인천 미추홀구 학익소로 63, 5층 (학익동, 신동빌딩)</p>
-                                <p className="mt-3"><strong>Tel:</strong> <span>032-876-2777</span></p>
-                                <p><strong>Fax:</strong> <span>032-876-3777</span></p>
-                                <p><strong>Email:</strong> <span>hk-lawyer@naver.com</span></p>
+                                <p><strong>대표변호사:</strong> <span>송유리, 최은진</span></p>
+                                <p><strong>광고책임변호사:</strong> <span>송유리</span></p>
                                 <p><strong>사업자등록번호:</strong> <span>435-06-03388</span></p>
                             </div>
                         </div>
@@ -85,12 +84,16 @@ const Footer = () => {
                             </ul>
                         </div>
 
-                        <div className="col-lg-4 col-md-12 footer-newsletter">
+                        <div className="col-lg-4 col-md-12">
                             <h4>Contact</h4>
-                            <p className="mt-3"><strong>Tel:</strong> <span>032-876-2777</span></p>
-                            <div className="social-links d-flex mt-4">
+                            <div className="social-links d-flex">
                                 <a href=""><img style={{width: '100%', borderRadius: '10px'}} src="/img/naver_box.jpg"  alt="네이버 톡톡" /></a>
                                 <a href=""><img style={{width: '100%'}} src="/img/kakao_box.png" alt="카카오톡 채널" /></a>
+                            </div>
+                            <div className="footer-contact pt-3">
+                                <p><strong>Tel:</strong> <span>032-876-2777</span></p>
+                                <p><strong>Fax:</strong> <span>032-876-3777</span></p>
+                                <p><strong>Email:</strong> <span>hk-lawyer@naver.com</span></p>
                             </div>
                         </div>
 

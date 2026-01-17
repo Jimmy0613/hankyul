@@ -18,7 +18,7 @@ const BlogPage = () => {
                     // 1. description(본문) 안에서 첫 번째 이미지 주소만 정규식으로 뽑아내기
                     const imgRegex = /<img[^>]+src=["']([^"']+)["']/;
                     const match = description.match(imgRegex);
-                    const imageUrl = match ? match[1] : '/img/logo_box.svg'; // 이미지가 없으면 기본 이미지
+                    const imageUrl = match ? match[1] : undefined; // 이미지가 없으면 기본 이미지
 
                     // 2. HTML 태그 제거하고 순수 텍스트만 남기기 (깔끔한 요약을 위해)
                     const cleanDescription = description.replace(/<[^>]*>?/gm, '').slice(0, 100) + "...";
@@ -63,20 +63,12 @@ const BlogPage = () => {
 
         const date = new Date(dateString);
 
-        // 방법 1: 2026. 01. 08 (점 구분자 방식)
         return date.toLocaleDateString('ko-KR', {
             year: 'numeric',
             month: '2-digit',
             day: '2-digit',
         }).replace(/\.$/, ""); // 마지막 점 제거
 
-        /* 방법 2: 2026년 1월 8일 (한글 방식)이 좋다면 아래 주석을 해제하세요.
-        return date.toLocaleDateString('ko-KR', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        });
-        */
     };
 
     return (
