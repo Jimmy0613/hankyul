@@ -57,7 +57,7 @@ const Footer = () => {
                                 <span className="sitename">공동법률사무소 한결</span>
                             </a>
                             <div className="footer-contact pt-3">
-                                <p>인천 미추홀구 학익소로 63, 5층 (학익동, 신동빌딩)</p>
+                                <p>인천 미추홀구 학익소로 63, 5층 (학익동, 신동빌딩) (22222)</p>
                                 <p><strong>대표변호사:</strong> <span>송유리, 최은진</span></p>
                                 <p><strong>광고책임변호사:</strong> <span>송유리</span></p>
                                 <p><strong>사업자등록번호:</strong> <span>435-06-03388</span></p>
