@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ServiceMedicalPatient = () => {
+const ServiceSchoolPage = () => {
     return (<div className="container" data-aos="fade-up">
 
         {/* 1. 상단 핵심 타이틀 */}
@@ -72,4 +72,4 @@ const ServiceMedicalPatient = () => {
     </div>);
 };
 
-export default ServiceMedicalPatient;
+export default ServiceSchoolPage;

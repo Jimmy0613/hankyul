@@ -1,9 +1,13 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom";
 
-const ServiceMedicalPatient = ({onBack}) => {
+const ServiceMedicalPatient = () => {
+    const navigate = useNavigate();
     return (<div className="container" data-aos="fade-up">
-        {/* 뒤로가기 버튼 */}
-        <button onClick={onBack} className="btn btn-outline-dark mb-3">
+        <button
+            onClick={() => navigate('/Service/medical')}
+            className="btn btn-sm btn-light mb-4"
+        >
             <i className="bi bi-arrow-left"></i> 목록으로 돌아가기
         </button>
 
@@ -91,6 +95,12 @@ const ServiceMedicalPatient = ({onBack}) => {
                 </div>
             </div>
         </div>
+        <button
+            onClick={() => navigate('/Service/medical')}
+            className="btn btn-sm btn-light mb-4"
+        >
+            <i className="bi bi-arrow-left"></i> 목록으로 돌아가기
+        </button>
     </div>);
 };
 

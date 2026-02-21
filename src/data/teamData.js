@@ -3,7 +3,7 @@ import team2 from '/src/assets/img/team/syr_temp.png';
 
 export const teamData = [
     {
-        id: 1,
+        id: 'cej',
         name: '최은진',
         engName: 'CHOI EUN JIN',
         role: '대표변호사',
@@ -50,7 +50,7 @@ export const teamData = [
         ]
     },
     {
-        id: 2,
+        id: 'syr',
         name: '송유리',
         engName: 'SONG YU RI',
         role: '대표변호사',

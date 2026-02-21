@@ -1,6 +1,7 @@
 // ServiceLayout.jsx (틀 역할)
-import { Outlet } from 'react-router-dom';
-import {useEffect} from "react";
+import {Outlet} from 'react-router-dom';
+import React, {useEffect} from "react";
+import ServiceNavigationPage from "./ServiceNavigation.jsx";
 
 const ServiceLayout = () => {
     useEffect(() => {
@@ -12,7 +13,12 @@ const ServiceLayout = () => {
         <section id="services" className="services section">
             <div className="container">
                 <div className="row">
-                    <Outlet /> {/* 여기에 MedicalPage나 SchoolPage가 갈아끼워짐 */}
+                    <div className="col-12">
+                        <Outlet/>
+                    </div>
+                    <div className="col-12">
+                        <ServiceNavigationPage/>
+                    </div>
                 </div>
             </div>
         </section>

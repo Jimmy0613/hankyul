@@ -24,6 +24,10 @@ import ServiceCivilPage from "./pages/Service/ServiceCivilPage.jsx";
 import BookPage from "./pages/Contact/BookPage.jsx";
 import ServiceFamilyPage from "./pages/Service/ServiceFamilyPage.jsx";
 import ServiceLaborPage from "./pages/Service/ServiceLaborPage.jsx";
+import ScrollToTop from "./components/layout/ScrollToTop.jsx";
+import ServiceMedicalDoctor from "./pages/Service/ServiceMedicalDoctor.jsx";
+import ServiceMedicalPatient from "./pages/Service/ServiceMedicalPatient.jsx";
+import MemberDetail from "./pages/About/MemberDetail.jsx";
 
 function App() {
 
@@ -90,33 +94,41 @@ function App() {
 
     return (
         <Router>
+            <ScrollToTop/>
             <Header/>
             <main className="main">
                 <Breadcrumb/>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
 
-                    <Route path="/About" element={<Outlet />}>
-                        <Route index element={<Navigate to="hello" replace />}/>
+                    <Route path="/About" element={<Outlet/>}>
+                        <Route index element={<Navigate to="hello" replace/>}/>
                         <Route path="hello" element={<HelloPage/>}/>
                         <Route path="team" element={<TeamPage/>}/>
                         <Route path="special" element={<SpecialPage/>}/>
                     </Route>
 
-                    <Route path="/Service" element={<ServiceLayout />}>
-                        <Route index element={<Navigate to="medical" replace />} />
-                        <Route path="medical" element={<ServiceMedicalPage />} />
-                        <Route path="school" element={<ServiceSchoolPage />} />
-                        <Route path="criminal" element={<ServiceCriminalPage />} />
-                        <Route path="civil" element={<ServiceCivilPage />} />
-                        <Route path="family" element={<ServiceFamilyPage />} />
-                        <Route path="labor" element={<ServiceLaborPage />} />
+                    <Route path="/About/team">
+                        <Route index element={<TeamPage/>}/> {/* 팀 전체 목록 */}
+                        <Route path=":memberId" element={<MemberDetail/>}/> {/* 개별 상세 페이지 */}
                     </Route>
 
-                    <Route path="/Case" element={<BlogPage />} />
+                    <Route path="/Service" element={<ServiceLayout/>}>
+                        <Route index element={<Navigate to="medical" replace/>}/>
+                        <Route path="medical" element={<ServiceMedicalPage/>}/>
+                        <Route path="medical/doctor" element={<ServiceMedicalDoctor/>}/>
+                        <Route path="medical/patient" element={<ServiceMedicalPatient/>}/>
+                        <Route path="school" element={<ServiceSchoolPage/>}/>
+                        <Route path="criminal" element={<ServiceCriminalPage/>}/>
+                        <Route path="civil" element={<ServiceCivilPage/>}/>
+                        <Route path="family" element={<ServiceFamilyPage/>}/>
+                        <Route path="labor" element={<ServiceLaborPage/>}/>
+                    </Route>
 
-                    <Route path="/Contact" element={<Outlet />}>
-                        <Route index element={<Navigate to="directions" replace />} />
+                    <Route path="/Case" element={<BlogPage/>}/>
+
+                    <Route path="/Contact" element={<Outlet/>}>
+                        <Route index element={<Navigate to="directions" replace/>}/>
                         <Route path="directions" element={<DirectionsPage/>}/>
                         <Route path="book" element={<BookPage/>}/>
                     </Route>
