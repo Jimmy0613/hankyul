@@ -7,9 +7,9 @@ const BlogPage = () => {
 
     // 블로그 ID 배열 (여기에 추가 블로그 ID를 넣으세요)
     const blogIds = [
-        import.meta.env.VITE_NAVER_BLOG_ID1,
-        import.meta.env.VITE_NAVER_BLOG_ID2,
-        import.meta.env.VITE_NAVER_BLOG_ID3,
+        'hk-laywer',
+        'attorney_hambok',
+        'attorney_hk'
     ];
 
     useEffect(() => {
