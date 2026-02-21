@@ -70,8 +70,7 @@ const Footer = () => {
                             <ul>
                                 <li><i className="bi bi-chevron-right"></i> <a href="/"> Home</a></li>
                                 <li><i className="bi bi-chevron-right"></i> <a href="/About/team"> 구성원 소개</a></li>
-                                <li><i className="bi bi-chevron-right"></i> <a href="/Case/blog"> 블로그</a></li>
-                                <li><i className="bi bi-chevron-right"></i> <a href="/Case/success"> 성공사례</a></li>
+                                <li><i className="bi bi-chevron-right"></i> <a href="/Case"> 블로그</a></li>
                             </ul>
                         </div>
 
@@ -81,7 +80,6 @@ const Footer = () => {
                                 <li><i className="bi bi-chevron-right"></i> <a href="/Service/medical"> 의료</a></li>
                                 <li><i className="bi bi-chevron-right"></i> <a href="/Service/school"> 학교폭력</a></li>
                                 <li><i className="bi bi-chevron-right"></i> <a href="/Service/criminal"> 형사</a></li>
-                                <li><i className="bi bi-chevron-right"></i> <a href="/Service/civil"> 민사</a></li>
                             </ul>
                         </div>
 
