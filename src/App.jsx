@@ -17,12 +17,13 @@ import SpecialPage from "./pages/About/SpecialPage.jsx";
 import ServiceMedicalPage from "./pages/Service/ServiceMedicalPage.jsx";
 import DirectionsPage from "./pages/Contact/DirectionsPage.jsx";
 import BlogPage from "./pages/Case/BlogPage.jsx";
-import SuccessPage from "./pages/Case/SuccessPage.jsx";
 import ServiceSchoolPage from "./pages/Service/ServiceSchoolPage.jsx";
 import ServiceLayout from "./pages/Service/ServiceLayout.jsx";
 import ServiceCriminalPage from "./pages/Service/ServiceCriminalPage.jsx";
 import ServiceCivilPage from "./pages/Service/ServiceCivilPage.jsx";
 import BookPage from "./pages/Contact/BookPage.jsx";
+import ServiceFamilyPage from "./pages/Service/ServiceFamilyPage.jsx";
+import ServiceLaborPage from "./pages/Service/ServiceLaborPage.jsx";
 
 function App() {
 
@@ -108,13 +109,11 @@ function App() {
                         <Route path="school" element={<ServiceSchoolPage />} />
                         <Route path="criminal" element={<ServiceCriminalPage />} />
                         <Route path="civil" element={<ServiceCivilPage />} />
+                        <Route path="family" element={<ServiceFamilyPage />} />
+                        <Route path="labor" element={<ServiceLaborPage />} />
                     </Route>
 
-                    <Route path="/Case" element={<Outlet />}>
-                        <Route index element={<Navigate to="blog" replace />} />
-                        <Route path="blog" element={<BlogPage/>}/>
-                        <Route path="success" element={<SuccessPage/>}/>
-                    </Route>
+                    <Route path="/Case" element={<BlogPage />} />
 
                     <Route path="/Contact" element={<Outlet />}>
                         <Route index element={<Navigate to="directions" replace />} />

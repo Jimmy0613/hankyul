@@ -614,11 +614,6 @@ h6 {
     border-radius: 4px;
 }
 
-/* 4. 드롭다운이 없는 일반 메뉴(오시는 길 등)의 배경색 유지 */
-.navmenu li:not(.dropdown) > a.active {
-    background-color: var(--accent-color) !important;
-    color: #ffffff !important;
-}
 
 /*--------------------------------------------------------------
 # Global Footer
@@ -669,11 +664,6 @@ h6 {
     font-size: 16px;
     margin-right: 10px;
     transition: 0.3s;
-}
-
-.footer .social-links a:hover {
-    color: var(--contrast-color);
-    background-color: var(--accent-color);
 }
 
 .footer h4 {
@@ -2033,5 +2023,22 @@ section,
 @media (max-width: 991px) {
     #special-features .image-wrapper {
         margin-top: 3rem;
+    }
+}
+
+/* PC 화면일 때 (브라우저 너비 992px 이상) */
+@media (min-width: 992px) {
+    .tel-link {
+        pointer-events: none; /* 클릭 이벤트 차단 */
+        cursor: default;      /* 마우스 커서를 기본 화살표로 */
+        text-decoration: none !important; /* 밑줄 방지 */
+    }
+}
+
+/* 모바일/태블릿 화면일 때 (991px 이하) */
+@media (max-width: 991px) {
+    .tel-link {
+        pointer-events: auto; /* 클릭 가능하게 설정 */
+        cursor: pointer;
     }
 }

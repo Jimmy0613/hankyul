@@ -56,10 +56,11 @@ const Header = () => {
 
     return (
         <header id="header" className="header d-flex align-items-center fixed-top">
-            <div className="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <div
+                className="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
                 <Link to="/" className="logo d-flex align-items-center me-auto me-lg-0" onClick={closeAllMenus}>
-                    <img style={{ filter: 'brightness(0) invert(1)'}} src="/img/logo_wide.svg" alt="로고"/>
+                    <img style={{filter: 'brightness(0) invert(1)'}} src="/img/logo_wide.svg" alt="로고"/>
                 </Link>
 
                 <nav id="navmenu" className="navmenu">
@@ -89,19 +90,16 @@ const Header = () => {
                                 <li><NavLink to="/Service/medical" onClick={closeAllMenus}>의료</NavLink></li>
                                 <li><NavLink to="/Service/school" onClick={closeAllMenus}>학교폭력</NavLink></li>
                                 <li><NavLink to="/Service/criminal" onClick={closeAllMenus}>형사</NavLink></li>
-                                <li><NavLink to="/Service/civil" onClick={closeAllMenus}>민사/이혼/상속</NavLink></li>
+                                <li><NavLink to="/Service/civil" onClick={closeAllMenus}>민사</NavLink></li>
+                                <li><NavLink to="/Service/family" onClick={closeAllMenus}>가사</NavLink></li>
+                                <li><NavLink to="/Service/labor" onClick={closeAllMenus}>노무</NavLink></li>
                             </ul>
                         </li>
 
-                        <li className="dropdown">
+                        <li>
                             <NavLink to="/Case" onClick={closeAllMenus}>
                                 <span>업무사례</span>
-                                <i className="bi bi-chevron-down toggle-dropdown" onClick={handleDropdownToggle}></i>
                             </NavLink>
-                            <ul>
-                                <li><NavLink to="/Case/blog" onClick={closeAllMenus}>블로그</NavLink></li>
-                                <li><NavLink to="/Case/success" onClick={closeAllMenus}>성공사례</NavLink></li>
-                            </ul>
                         </li>
 
                         <li className="dropdown">
@@ -118,8 +116,8 @@ const Header = () => {
                     </ul>
 
                     <i
-                      className={`mobile-nav-toggle d-xl-none bi ${isMobileNavActive ? 'bi-x' : 'bi-list'}`}
-                      onClick={toggleMobileNav}
+                        className={`mobile-nav-toggle d-xl-none bi ${isMobileNavActive ? 'bi-x' : 'bi-list'}`}
+                        onClick={toggleMobileNav}
                     ></i>
                 </nav>
 

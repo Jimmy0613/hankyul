@@ -1,4 +1,5 @@
 import {useEffect} from "react";
+import {Rss, MessageCircle, School, Stethoscope} from "lucide-react";
 
 const Footer = () => {
 
@@ -85,10 +86,41 @@ const Footer = () => {
                         </div>
 
                         <div className="col-lg-4 col-md-12">
-                            <h4>Contact</h4>
-                            <div className="social-links d-flex">
-                                <a href=""><img style={{width: '100%', borderRadius: '10px'}} src="/img/naver_box.jpg"  alt="네이버 톡톡" /></a>
-                                <a href=""><img style={{width: '100%'}} src="/img/kakao_box.png" alt="카카오톡 채널" /></a>
+                            <h4>Quick Links</h4>
+                            <div className="social-links d-flex align-items-center gap-2">
+                                {/* 1. 네이버 톡톡 */}
+                                <a href="https://talk.naver.com/ct/wq0ekfq" target="_blank" rel="noreferrer"
+                                   title="네이버 톡톡">
+                                    <img style={{width: '32px', height: '32px', borderRadius: '6px'}}
+                                         src="/img/naver_box.jpg" alt="네이버 톡톡"/>
+                                </a>
+
+                                {/* 2. 카카오톡 채널 */}
+                                <a href="http://pf.kakao.com/_fhKAX" target="_blank" rel="noreferrer" title="카카오톡 채널">
+                                    <img style={{width: '32px', height: '32px', borderRadius: '6px'}}
+                                         src="/img/kakao_box.png" alt="카카오톡 채널"/>
+                                </a>
+
+                                {/* 3. 네이버 공식 블로그 (이미지 형태 유지) */}
+                                <a href="https://blog.naver.com/hk-lawyer" target="_blank" rel="noreferrer"
+                                   title="한결 공식 블로그">
+                                    <img style={{width: '32px', height: '32px', borderRadius: '6px'}}
+                                         src="/img/naver_blog.png" alt="한결 공식 블로그"/>
+                                </a>
+
+                                {/* 4. 학교폭력 블로그 (네이버 초록색 배경 + 흰색 아이콘) */}
+                                <a href="https://blog.naver.com/attorney_hambok" target="_blank" rel="noreferrer"
+                                   className="d-flex align-items-center justify-content-center rounded-2 shadow-sm"
+                                   style={{width: '32px', height: '32px', backgroundColor: '#03C75A'}} title="학교폭력 블로그">
+                                    <School size={18} color="#ffffff" strokeWidth={2.5}/>
+                                </a>
+
+                                {/* 5. 의료 블로그 (네이버 초록색 배경 + 흰색 아이콘) */}
+                                <a href="https://blog.naver.com/attorney_hk" target="_blank" rel="noreferrer"
+                                   className="d-flex align-items-center justify-content-center rounded-2 shadow-sm"
+                                   style={{width: '32px', height: '32px', backgroundColor: '#03C75A'}} title="의료 블로그">
+                                    <Stethoscope size={18} color="#ffffff" strokeWidth={2.5}/>
+                                </a>
                             </div>
                             <div className="footer-contact pt-3">
                                 <p><strong>Tel:</strong> <span>032-876-2777</span></p>
@@ -106,7 +138,9 @@ const Footer = () => {
                     <span>All Rights Reserved</span></p>
                 <div className="credits">
                     {/* BootstrapMade 링크는 템플릿 라이선스에 따라 유지하거나 수정하시면 됩니다 */}
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a><br/>
+                    Images by <a href="https://www.freepik.com">Freepik</a>, <a
+                    href="https://pixabay.com/ko/">Pixabay</a>
                 </div>
             </div>
         </footer>

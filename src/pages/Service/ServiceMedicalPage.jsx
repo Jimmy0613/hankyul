@@ -1,35 +1,72 @@
-import React, {useState} from "react";
-import {serviceData} from "../../data/serviceData.js";
+import React, { useState } from 'react';
+import ServiceMedicalDoctor from './ServiceMedicalDoctor.jsx';
+import ServiceMedicalPatient from './ServiceMedicalPatient.jsx'; // 새로 추가
 
 const ServiceMedicalPage = () => {
-    // 의료 내부에서 사용할 탭 상태
-    const [innerTab, setInnerTab] = useState('doctor');
+    const [selectedServiceId, setSelectedServiceId] = useState(null);
+
+    // 서비스 데이터
+    const medicalServices = [
+        {
+            id: 'doctor',
+            title: '의료진을 위한',
+            img: '/img/portrait-friendly-doctor-isolated-gray.jpg',
+        },
+        {
+            id: 'patient',
+            title: '환자를 위한',
+            img: '/img/close-up-nurse-comforting-ill-patient-hospital-ward.jpg',
+        }
+    ];
+
+    // 조건부 렌더링 함수
+    const renderDetail = () => {
+        if (selectedServiceId === 'doctor') {
+            return <ServiceMedicalDoctor onBack={() => setSelectedServiceId(null)} />;
+        }
+        if (selectedServiceId === 'patient') {
+            return <ServiceMedicalPatient onBack={() => setSelectedServiceId(null)} />;
+        }
+        return null;
+    };
 
     return (
-        <>
-            {/* Section Title */}
-            <div className="container section-title" data-aos="fade-up">
-                <h2>Service</h2>
-                <p>여기에 제목 넣어도 되고 빼도 되고</p>
-            </div>
-            <div className="col-12">
-                <ul className="nav nav-tabs custom-tabs">
-                    <li className="nav-item">
-                        <button className={`nav-link ${innerTab === 'doctor' ? 'active' : ''}`}
-                                onClick={() => setInnerTab('doctor')}>의료진을 위한
-                        </button>
-                    </li>
-                    <li className="nav-item">
-                        <button className={`nav-link ${innerTab === 'patient' ? 'active' : ''}`}
-                                onClick={() => setInnerTab('patient')}>환자를 위한
-                        </button>
-                    </li>
-                </ul>
-                <div className="tab-content p-4 border border-top-0 rounded-bottom">
-                    {serviceData.medical[innerTab]}
+        <section id="medical-service" className="team section">
+            {selectedServiceId ? (
+                renderDetail()
+            ) : (
+                <div className="container" data-aos="fade-up">
+                    <div className="row gy-4 justify-content-center">
+                        {medicalServices.map((service) => (
+                            <div
+                                key={service.id}
+                                className="col-lg-5 col-md-6"
+                                onClick={() => setSelectedServiceId(service.id)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                <div className="member team-member service-card">
+                                    <div className="member-img position-relative overflow-hidden rounded-4"
+                                         style={{ height: '350px' }}>
+                                        <img
+                                            src={service.img}
+                                            className="img-fluid w-100 h-100"
+                                            alt={service.title}
+                                            style={{ objectFit: 'cover' }}
+                                        />
+                                        <div className="social d-flex justify-content-center align-items-center">
+                                            <span className="text-white">자세히 보기 <i className="bi bi-plus"></i></span>
+                                        </div>
+                                    </div>
+                                    <div className="member-info text-center pt-4">
+                                        <h4 className="mt-2 fw-bold">{service.title}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
-        </>
+            )}
+        </section>
     );
 };
 
