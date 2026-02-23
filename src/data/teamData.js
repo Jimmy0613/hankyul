@@ -1,5 +1,5 @@
-import team1 from '/src/assets/img/team/cej_temp.png';
-import team2 from '/src/assets/img/team/syr_temp.png';
+import team1 from '/src/assets/img/team/profile_cej.jpg';
+import team2 from '/src/assets/img/team/profile_syr.jpg';
 
 export const teamData = [
     {

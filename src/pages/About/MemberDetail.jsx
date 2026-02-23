@@ -18,36 +18,40 @@ const MemberDetail = () => {
         <div className="container" data-aos="fade-up">
             {/* 상세 내용 표시 (기존 MemberDetail의 JSX 내용 그대로 사용) */}
             <div className="row mt-5">
-                <div className="row mb-5">
+                <div className="row mb-5 d-flex align-items-center justify-content-around">
                     {/* 왼쪽: 사진 */}
                     <div className="col-lg-4 mb-4 mb-lg-0">
                         <img src={member.img} className="img-fluid rounded shadow" alt={member.name}/>
                     </div>
 
                     {/* 오른쪽: 기본 소개 */}
-                    <div className="col-lg-5 content">
-                        <span className="content-subtitle">{member.role}</span>
-                        <h2 className="content-title">
-                            <span className="text-primary-emphasis">{member.name}</span><span
-                            className="m-3 fs-5 text-muted">{member.engName}</span>
-                        </h2>
-                        <p className="lead" dangerouslySetInnerHTML={{__html: member.description}}></p>
-                        <ul className="list-unstyled mb-0">
-                            {member.summary?.map((item, index) => (
-                                <li key={index} className="mb-2 d-flex">
-                                    <i className="bi bi-check2-circle text-danger-emphasis me-2"></i>
-                                    {item}
-                                </li>
-                            ))}
-                        </ul>
-                        {/* --- 다른 구성원 이동 링크 카드 --- */}
-                        <div className="other-members-section mt-5">
+                    <div className="col-lg-6 content d-flex flex-column justify-content-between h-100">
+                        {/* 상단 영역: 이름, 설명, 요약 */}
+                        <div className="top-info">
+                            <span className="content-subtitle">{member.role}</span>
+                            <h2 className="content-title mb-5">
+                                <span className="text-primary-emphasis">{member.name}</span>
+                                <span className="m-3 fs-5 text-muted">{member.engName}</span>
+                            </h2>
+                            <p className="lead mb-5" dangerouslySetInnerHTML={{__html: member.description}}></p>
+                            <ul className="list-unstyled">
+                                {member.summary?.map((item, index) => (
+                                    <li key={index} className="mb-2 d-flex">
+                                        <i className="bi bi-check2-circle text-danger-emphasis me-2"></i>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* 하단 영역: 다른 구성원 이동 링크 카드 (mt-auto를 주면 확실히 아래로 붙습니다) */}
+                        <div className="other-members-section mt-auto pt-5">
                             <h6 className="fw-bold mb-3 text-muted" style={{fontSize: '0.9rem', letterSpacing: '1px'}}>
                                 OTHER MEMBERS
                             </h6>
                             <div className="row g-3">
                                 {teamData
-                                    .filter(m => m.id !== member.id) // 현재 보고 있는 멤버 제외
+                                    .filter(m => m.id !== member.id)
                                     .map((other) => (
                                         <div key={other.id} className="col-6">
                                             <Link to={`/About/team/${other.id}`} className="text-decoration-none">
@@ -78,8 +82,8 @@ const MemberDetail = () => {
                         </div>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-12">
+                <div className="row justify-content-center">
+                    <div className="col-11">
                         <ul className="nav nav-tabs custom-tabs">
                             <li className="nav-item">
                                 <button className={`nav-link ${activeTab === 'education' ? 'active' : ''}`}

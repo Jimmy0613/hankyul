@@ -36,42 +36,52 @@ const Home = () => {
                 <div className="row gy-4 mt-5 justify-content-center" data-aos="fade-up" data-aos-delay="200">
                     {/* 구성원 소개 */}
                     <div className="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="300">
-                        <div className="icon-box">
-                            <Users size={32} strokeWidth={2} color="#FFE600"/>
-                            <h3><NavLink to="/About/team">구성원 소개</NavLink></h3>
-                        </div>
+                        <NavLink to="/About/team">
+                            <div className="icon-box">
+                                <Users size={32} strokeWidth={2} color="#FFE600"/>
+                                <h3>구성원 소개</h3>
+                            </div>
+                        </NavLink>
                     </div>
 
                     {/* 의료 (문서 형태) */}
                     <div className="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="400">
-                        <div className="icon-box">
-                            <Stethoscope size={32} strokeWidth={2} color="#FFE600"/>
-                            <h3><NavLink to="/Service/medical">의료</NavLink></h3>
-                        </div>
+                        <NavLink to="/Service/medical">
+                            <div className="icon-box">
+                                <Stethoscope size={32} strokeWidth={2} color="#FFE600"/>
+                                <h3>의료</h3>
+                            </div>
+                        </NavLink>
                     </div>
 
                     {/* 학교폭력 (학교 건물) */}
                     <div className="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="500">
-                        <div className="icon-box">
-                            <School size={32} strokeWidth={2} color="#FFE600"/>
-                            <h3><NavLink to="/Service/school">학교폭력</NavLink></h3>
-                        </div>
+                        <NavLink to="/Service/school">
+                            <div className="icon-box">
+                                <School size={32} strokeWidth={2} color="#FFE600"/>
+                                <h3>학교폭력</h3>
+                            </div>
+                        </NavLink>
                     </div>
 
                     {/* 오시는 길 */}
                     <div className="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="600">
-                        <div className="icon-box">
-                            <MapPinned size={32} strokeWidth={2} color="#FFE600"/>
-                            <h3><NavLink to="/Contact/directions">오시는 길</NavLink></h3>
-                        </div>
+                        <NavLink to="/Contact/directions">
+                            <div className="icon-box">
+                                <MapPinned size={32} strokeWidth={2} color="#FFE600"/>
+                                <h3>오시는 길</h3>
+                            </div>
+                        </NavLink>
                     </div>
 
                     {/* 상담예약 */}
                     <div className="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="700">
-                        <div className="icon-box">
-                            <CalendarCheck size={32} strokeWidth={2} color="#FFE600"/>
-                            <h3><NavLink to="/Contact/book">상담예약</NavLink></h3>
-                        </div>
+                        <NavLink to="/Contact/book">
+                            <div className="icon-box">
+                                <CalendarCheck size={32} strokeWidth={2} color="#FFE600"/>
+                                <h3>상담예약</h3>
+                            </div>
+                        </NavLink>
                     </div>
                 </div>
 
