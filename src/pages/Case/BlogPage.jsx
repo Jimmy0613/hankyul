@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import axios from 'axios';
 
 const BlogPage = () => {
@@ -34,7 +34,12 @@ const BlogPage = () => {
                         const description = node.querySelector("description").textContent;
                         const imgRegex = /<img[^>]+src=["']([^"']+)["']/;
                         const match = description.match(imgRegex);
-                        const imageUrl = match ? match[1] : undefined;
+
+                        let imageUrl = match ? match[1] : undefined;
+
+                        if (imageUrl) {
+                            imageUrl = imageUrl.replace(/\?type=[a-zA-Z0-9]+/, '?type=w2');
+                        }
 
                         const cleanDescription = description.replace(/<[^>]*>?/gm, '').slice(0, 100) + "...";
 
