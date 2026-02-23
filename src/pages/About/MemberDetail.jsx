@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {teamData} from "../../data/teamData.js";
 
 const MemberDetail = () => {
     const {memberId} = useParams(); // URL에서 :memberId 값을 가져옴
     const [activeTab, setActiveTab] = useState('education'); // 기본 탭: 학력
-    const navigate = useNavigate();
 
     // 데이터에서 해당 ID와 일치하는 팀원 찾기
     const member = teamData.find(m => m.id === memberId);
