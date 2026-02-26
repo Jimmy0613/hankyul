@@ -25,7 +25,7 @@ const ServiceNavigationPage = () => {
                 <div className="d-flex flex-wrap justify-content-center gap-2">
                     {services
                         // 현재 경로(location.pathname)와 일치하지 않는 것만 보여주기
-                        .filter(service => location.pathname !== service.path)
+                        .filter(service => !location.pathname.startsWith(service.path))
                         .map((service, index) => (
                             <Link
                                 key={index}

@@ -1,8 +1,10 @@
 import React from 'react';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {ChevronsRight} from "lucide-react";
 
 const ServiceMedicalDoctor = () => {
     const navigate = useNavigate();
+
     return (
         <div className="container" data-aos="fade-up">
             {/* 뒤로가기 버튼 */}
@@ -24,8 +26,7 @@ const ServiceMedicalDoctor = () => {
 
             {/* --- 형사 섹션 --- */}
             <div className="medical-section mb-5 pb-5">
-                <h3 className="fw-bold mb-4 text-primary-emphasis border-start border-4 border-primary ps-3">의료진을 위한 -
-                    형사</h3>
+                <h3 className="fw-bold mb-4 text-primary-emphasis border-start border-4 border-primary ps-3">형사</h3>
                 <div className="row align-items-center mb-4 gx-lg-5">
                     <div className="col-lg-5">
                         <p className="mb-3">
@@ -45,7 +46,7 @@ const ServiceMedicalDoctor = () => {
                     </div>
                 </div>
                 {/* 세부 업무분야 블록 (가로로 넓게) */}
-                <div className="service-description p-4 bg-light rounded-4 shadow-sm">
+                <div className="service-description p-4 bg-light rounded-4 shadow-sm col-11">
                     <h5 className="fw-bold mb-3"><i className="bi bi-layers-fill me-2 text-primary"></i>세부 업무분야</h5>
                     <ul className="list-unstyled row gy-2 mb-0">
                         <li className="col-md-4"><i className="bi bi-check2 text-primary me-2"></i>업무상과실치사상</li>
@@ -61,8 +62,7 @@ const ServiceMedicalDoctor = () => {
 
             {/* --- 민사 섹션 (지그재그: 이미지 좌측) --- */}
             <div className="medical-section mb-5 pb-5">
-                <h3 className="fw-bold mb-4 text-primary-emphasis border-start border-4 border-primary ps-3">의료진을
-                    위한 - 민사</h3>
+                <h3 className="fw-bold mb-4 text-primary-emphasis border-start border-4 border-primary ps-3">민사</h3>
                 <div className="row align-items-center mb-4 gx-lg-5 flex-lg-row">
                     <div className="col-lg-5">
                         <p className="mb-3">환자측에서 진료 중 과실, 설명의무위반 등을 주장하며 손해배상을 청구하는 경우 이에 대한 적극적인 대응이 필요합니다.<br/>재판부를
@@ -77,7 +77,7 @@ const ServiceMedicalDoctor = () => {
                              style={{maxHeight: '300px', width: '100%', objectFit: 'cover'}}/>
                     </div>
                 </div>
-                <div className="service-description p-4 bg-light rounded-4 shadow-sm">
+                <div className="service-description p-4 bg-light rounded-4 shadow-sm col-11">
                     <h5 className="fw-bold mb-3"><i className="bi bi-layers-fill me-2 text-primary"></i>세부 업무분야</h5>
                     <ul className="list-unstyled row gy-2 mb-0">
                         <li className="col-md-4"><i className="bi bi-check2 text-primary me-2"></i>수술 후 합병증 발생</li>
@@ -93,7 +93,7 @@ const ServiceMedicalDoctor = () => {
 
             {/* --- 행정 섹션 (다시 이미지 우측) --- */}
             <div className="medical-section mb-5 pb-5">
-                <h3 className="fw-bold mb-4 text-primary-emphasis border-start border-4 border-primary ps-3">의료진을 위한 -
+                <h3 className="fw-bold mb-4 text-primary-emphasis border-start border-4 border-primary ps-3">
                     행정</h3>
                 <div className="row align-items-center mb-4 gx-lg-5">
                     <div className="col-lg-5">
@@ -107,7 +107,7 @@ const ServiceMedicalDoctor = () => {
                              style={{maxHeight: '300px', width: '100%', objectFit: 'cover'}}/>
                     </div>
                 </div>
-                <div className="service-description p-4 bg-light rounded-4 shadow-sm">
+                <div className="service-description p-4 bg-light rounded-4 shadow-sm col-11">
                     <h5 className="fw-bold mb-3"><i className="bi bi-layers-fill me-2 text-primary"></i>세부 업무분야</h5>
                     <ul className="list-unstyled row gy-2 mb-0">
                         <li className="col-md-4"><i className="bi bi-check2 text-primary me-2"></i>현지조사 대응</li>
@@ -119,12 +119,28 @@ const ServiceMedicalDoctor = () => {
                     </ul>
                 </div>
             </div>
-            <button
-                onClick={() => navigate('/Service/medical')}
-                className="btn btn-sm btn-light mb-4"
-            >
-                <i className="bi bi-arrow-left"></i> 목록으로 돌아가기
-            </button>
+            <Link to={`/Service/medical/patient`} className="text-decoration-none">
+                <div
+                    className="other-member-card p-2 border rounded-3 d-flex align-items-center bg-white shadow-sm-hover transition col-2">
+                    <ChevronsRight/>
+                    <img
+                        src='/img/close-up-nurse-comforting-ill-patient-hospital-ward.jpg'
+                        alt='환자를 위한'
+                        className="rounded-circle me-3"
+                        style={{
+                            width: '45px',
+                            height: '45px',
+                            objectFit: 'cover',
+                            border: '2px solid #eee'
+                        }}
+                    />
+                    <div>
+                        <div className="text-dark fw-bold" style={{fontSize: '0.95rem'}}>
+                            환자를 위한
+                        </div>
+                    </div>
+                </div>
+            </Link>
         </div>
     );
 };

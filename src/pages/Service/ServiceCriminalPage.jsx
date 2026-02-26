@@ -5,7 +5,8 @@ const ServiceCriminalPage = () => {
         <div className="container" data-aos="fade-up">
             {/* --- 형사 섹션 --- */}
             <div className="medical-section mb-5 pb-5">
-                <div className="row align-items-center mb-4 gx-lg-6 flex-lg-row-reverse d-flex gx-xl-5 justify-content-center">
+                <div
+                    className="row align-items-center mb-4 gx-lg-6 flex-lg-row-reverse d-flex gx-xl-5 justify-content-center">
                     <div className="col-lg-6">
                         <p>
                             <h5 className="fw-bold" style={{color: '#002D5D'}}>형사 사건은 초기 대응이 결과를 좌우합니다.</h5>
@@ -39,9 +40,12 @@ const ServiceCriminalPage = () => {
                             도주치사상 등)
                         </li>
                         <li className="col-md-4"><i className="bi bi-check2 text-primary me-2"></i>마약(대마, 향정)</li>
-                        <li className="col-md-4"><i className="bi bi-check2 text-primary me-2"></i>재산범죄(사기, 횡령, 배임 등)
+                        <li className="col-md-4"><i className="bi bi-check2 text-primary me-2"></i>재산범죄(사기, 보이스피싱, 횡령,
+                            배임 등)
                         </li>
                         <li className="col-md-4"><i className="bi bi-check2 text-primary me-2"></i>형사일반(폭행, 상해, 명예훼손 등)
+                        </li>
+                        <li className="col-md-4"><i className="bi bi-check2 text-primary me-2"></i>보험사기
                         </li>
                     </ul>
                 </div>
