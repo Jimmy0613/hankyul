@@ -22,8 +22,8 @@ const TeamPage = () => {
                     <img src={member.img} className="img-fluid" alt={member.name} />
                   </div>
                   <div className="member-info text-center">
-                    <h4>{member.role}</h4>
-                    <span>{member.name}</span>
+                    <span>{member.role}</span>
+                    <h4>{member.name}</h4>
                   </div>
                 </div>
               </Link>
