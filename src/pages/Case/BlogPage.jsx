@@ -7,7 +7,7 @@ const BlogPage = () => {
 
     // 블로그 ID 배열 (여기에 추가 블로그 ID를 넣으세요)
     const blogIds = [
-        'hk-laywer',
+        'hk-lawyer',
         'attorney_hambok',
         'attorney_hk'
     ];
