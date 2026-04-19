@@ -35,6 +35,7 @@ const Breadcrumb = () => {
         'family': '가사',
         'labor': '노무',
         'Case': '업무사례', // 이제 /Case 접속 시 이것만 깔끔하게 표시됩니다.
+        'Column': '한결칼럼',
         'blog': '블로그',
         'Contact': '상담 및 안내', // 부모 카테고리 이름
         'directions': '오시는 길',
