@@ -18,9 +18,92 @@ const detailCardStyle = {
 
 const contentStyle = {
   color: "rgba(33, 37, 41, 0.92)",
-  lineHeight: 1.95,
-  fontSize: "1.02rem",
+  lineHeight: 1.7,
+  fontSize: "15px",
+  fontFamily: "var(--default-font)",
 };
+
+const contentHeadingStyle = `
+  .column-detail-content {
+    outline: none;
+    min-height: 350px;
+    font-size: 15px;
+    line-height: 1.7;
+    font-family: var(--default-font);
+  }
+
+  .column-detail-content h1,
+  .column-detail-content h2,
+  .column-detail-content h3 {
+    color: var(--heading-color);
+    font-family: var(--default-font);
+    letter-spacing: normal;
+    line-height: 1.7;
+  }
+
+  .column-detail-content h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 10px 0;
+  }
+
+  .column-detail-content h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 10px 0;
+  }
+
+  .column-detail-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 10px 0;
+  }
+
+  .column-detail-content p {
+    margin: 10px 0;
+    white-space: pre-wrap;
+  }
+
+  .column-detail-content blockquote {
+    position: relative;
+    margin: 24px auto;
+    padding: 24px 32px 34px;
+    background: #f8fafc;
+    color: #333;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.8;
+    border: none;
+    border-radius: 12px;
+  }
+
+  .column-detail-content blockquote::before {
+    content: "❝";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 42px;
+    color: #cbd5e1;
+    font-weight: bold;
+  }
+
+  .column-detail-content blockquote::after {
+    content: "❞";
+    position: absolute;
+    bottom: -26px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 42px;
+    color: #cbd5e1;
+    font-weight: bold;
+  }
+
+  .column-detail-content blockquote p:last-child {
+    margin-bottom: 0;
+  }
+`;
 
 const ColumnDetailPage = () => {
   const { id } = useParams();
@@ -99,6 +182,7 @@ const ColumnDetailPage = () => {
 
   return (
     <section className="services section">
+      <style>{contentHeadingStyle}</style>
       <div className="container" data-aos="fade-up">
         <div className="row justify-content-center">
           <div className="col-lg-9">
@@ -114,7 +198,7 @@ const ColumnDetailPage = () => {
                 </Link>
               </div>
 
-              <div className="d-flex align-items-center gap-2 flex-wrap mb-3">
+              <div className="d-flex align-items-center gap-3 flex-wrap mb-2">
                 <span
                   className="fw-semibold px-3 py-2"
                   style={{
@@ -127,23 +211,27 @@ const ColumnDetailPage = () => {
                 >
                   {categoryName}
                 </span>
-                <span className="text-muted small">작성일 {formatDate(post.created_at)}</span>
-                {post.updated_at && (
-                  <span className="text-muted small">수정일 {formatDate(post.updated_at)}</span>
-                )}
+                <h1
+                  className="text-dark fw-bold mb-0"
+                  style={{
+                    fontSize: "clamp(1.72rem, 3vw, 2.25rem)",
+                    lineHeight: 1.3,
+                    letterSpacing: "-0.03em",
+                  }}
+                >
+                  {post.title}
+                </h1>
               </div>
 
-              <h1
-                className="text-dark fw-bold mb-4"
-                style={{
-                  fontSize: "clamp(1.35rem, 2.2vw, 2rem)",
-                  lineHeight: 1.4,
-                }}
-              >
-                {post.title}
-              </h1>
+              <div className="mb-4">
+                <span className="text-muted small">작성일 {formatDate(post.created_at)}</span>
+              </div>
 
-              <div style={contentStyle} dangerouslySetInnerHTML={{ __html: post.content || "" }} />
+              <div
+                className="column-detail-content"
+                style={contentStyle}
+                dangerouslySetInnerHTML={{ __html: post.content || "" }}
+              />
             </div>
           </div>
         </div>
