@@ -102,6 +102,12 @@ const Header = () => {
                             </NavLink>
                         </li>
 
+                        <li>
+                            <NavLink to="/Column" onClick={closeAllMenus}>
+                                <span>한결칼럼</span>
+                            </NavLink>
+                        </li>
+
                         <li className="dropdown">
                             <NavLink to="/Contact" onClick={closeAllMenus}>
                                 <span>오시는길</span>

@@ -28,6 +28,8 @@ import ScrollToTop from "./components/layout/ScrollToTop.jsx";
 import ServiceMedicalDoctor from "./pages/Service/ServiceMedicalDoctor.jsx";
 import ServiceMedicalPatient from "./pages/Service/ServiceMedicalPatient.jsx";
 import MemberDetail from "./pages/About/MemberDetail.jsx";
+import ColumnList from "./pages/Column/ColumnPage.jsx";
+import ColumnDetailPage from "./pages/Column/ColumnDetailPage.jsx";
 
 function App() {
 
@@ -126,6 +128,9 @@ function App() {
                     </Route>
 
                     <Route path="/Case" element={<BlogPage/>}/>
+
+                    <Route path="/Column" element={<ColumnList />} />
+                    <Route path="/Column/:id" element={<ColumnDetailPage />} />
 
                     <Route path="/Contact" element={<Outlet/>}>
                         <Route index element={<Navigate to="directions" replace/>}/>
