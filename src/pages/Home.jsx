@@ -2,6 +2,7 @@ import {useEffect} from "react";
 import {Users, FileText, School, MapPinned, CalendarCheck, Stethoscope} from 'lucide-react';
 import bg from '/src/assets/img/hero-bg.jpg';
 import {NavLink} from "react-router-dom";
+import Seo from "../components/seo/Seo.jsx";
 
 const Home = () => {
     useEffect(() => {
@@ -13,6 +14,21 @@ const Home = () => {
     }, []);
 
     return (
+        <>
+        <Seo
+            title="공동법률사무소 한결 | 인천 변호사, 학교폭력·의료소송"
+            description="공동법률사무소 한결은 인천 변호사로서 학교폭력, 의료소송, 민사, 형사 사건 상담을 제공하고 한결칼럼으로 사건 대응 정보를 안내합니다."
+            keywords="공동법률사무소 한결, 인천 변호사, 인천 학교폭력 변호사, 인천 의료소송 변호사, 한결칼럼"
+            path="/"
+            structuredData={{
+                "@context": "https://schema.org",
+                "@type": "LegalService",
+                name: "공동법률사무소 한결",
+                url: "https://law-hankyul.com/",
+                areaServed: ["인천", "대한민국"],
+                serviceType: ["인천 변호사", "인천 학교폭력 변호사", "인천 의료소송 변호사"],
+            }}
+        />
         <section id="hero" className="hero section dark-background">
 
             <img src={bg} alt="bg" data-aos="fade-in"/>
@@ -87,6 +103,7 @@ const Home = () => {
 
             </div>
         </section>
+        </>
     )
 };
 

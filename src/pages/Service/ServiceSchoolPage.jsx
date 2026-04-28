@@ -1,7 +1,15 @@
 import React from 'react';
+import Seo from "../../components/seo/Seo.jsx";
 
 const ServiceSchoolPage = () => {
-    return (<div className="container" data-aos="fade-up">
+    return (<>
+        <Seo
+            title="인천 학교폭력 변호사 | 공동법률사무소 한결"
+            description="인천 학교폭력 변호사를 찾는 분들을 위해 학교폭력대책심의위원회, 행정심판, 행정소송, 관련 민형사 대응까지 공동법률사무소 한결이 안내합니다."
+            keywords="인천 학교폭력 변호사, 학교폭력대책심의위원회, 학교폭력 행정심판, 학교폭력 행정소송, 공동법률사무소 한결"
+            path="/Service/school"
+        />
+        <div className="container" data-aos="fade-up">
 
         {/* 1. 상단 핵심 타이틀 */}
         <div className="text-center mb-5 py-4">
@@ -69,7 +77,8 @@ const ServiceSchoolPage = () => {
                 </div>
             </div>
         </div>
-    </div>);
+    </div>
+    </>);
 };
 
 export default ServiceSchoolPage;

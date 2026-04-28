@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Seo from "../../components/seo/Seo.jsx";
 
 const ServiceMedicalPage = () => {
     // 서비스 데이터
@@ -19,6 +20,13 @@ const ServiceMedicalPage = () => {
     ];
 
     return (
+        <>
+        <Seo
+            title="인천 의료소송 변호사 | 공동법률사무소 한결"
+            description="인천 의료소송 변호사를 찾는 분들을 위해 의료진 측과 환자 측 사건 대응을 나누어 안내하는 공동법률사무소 한결의 의료분쟁 페이지입니다."
+            keywords="인천 의료소송 변호사, 의료분쟁 변호사, 의료과오, 환자 측 의료소송, 의료진 측 의료소송, 공동법률사무소 한결"
+            path="/Service/medical"
+        />
         <section id="medical-service" className="team section">
             <div className="container" data-aos="fade-up">
                 <div className="row gy-4 justify-content-center">
@@ -49,6 +57,7 @@ const ServiceMedicalPage = () => {
                 </div>
             </div>
         </section>
+        </>
     );
 };
 

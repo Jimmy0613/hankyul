@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { supabase } from "../../api/supabase.js";
+import Seo from "../../components/seo/Seo.jsx";
 
 const fallbackCategoryStyle = {
   backgroundColor: "#eef2f7",
@@ -22,6 +23,10 @@ const contentStyle = {
   fontSize: "15px",
   fontFamily: "var(--default-font)",
 };
+
+function extractPreviewText(html) {
+  return (html || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+}
 
 const contentHeadingStyle = `
   .column-detail-content {
@@ -179,9 +184,38 @@ const ColumnDetailPage = () => {
     backgroundColor: category?.badge_bg_color || fallbackCategoryStyle.backgroundColor,
     color: category?.badge_text_color || fallbackCategoryStyle.color,
   };
+  const previewText = extractPreviewText(post.content).slice(0, 140);
+  const seoTitle = `${post.title} | 한결칼럼 | 공동법률사무소 한결`;
+  const seoDescription =
+    previewText ||
+    "공동법률사무소 한결의 한결칼럼 상세 글입니다. 인천 변호사, 학교폭력, 의료소송 등 법률 이슈를 다룹니다.";
 
   return (
     <section className="services section">
+      <Seo
+        title={seoTitle}
+        description={seoDescription}
+        keywords={`${post.title}, 한결칼럼, 공동법률사무소 한결, 인천 변호사, 인천 학교폭력 변호사, 인천 의료소송 변호사`}
+        path={`/Column/${id}`}
+        type="article"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: post.title,
+          description: seoDescription,
+          datePublished: post.created_at,
+          dateModified: post.updated_at || post.created_at,
+          author: {
+            "@type": "Organization",
+            name: "공동법률사무소 한결",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "공동법률사무소 한결",
+          },
+          mainEntityOfPage: `https://law-hankyul.com/Column/${id}`,
+        }}
+      />
       <style>{contentHeadingStyle}</style>
       <div className="container" data-aos="fade-up">
         <div className="row justify-content-center">
