@@ -69,6 +69,22 @@ const contentHeadingStyle = `
     white-space: pre-wrap;
   }
 
+  .column-detail-content p.custom-bullet {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+    margin: 10px 0;
+  }
+
+  .column-detail-content p.custom-bullet::before {
+    content: attr(data-bullet-marker-text);
+    color: var(--bullet-marker-color, #111827);
+    font-weight: var(--bullet-marker-font-weight, 700);
+    line-height: 1.7;
+    white-space: pre;
+  }
+
   .column-detail-content blockquote {
     position: relative;
     margin: 24px auto;
