@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../../api/supabase.js";
+import Seo from "../../components/seo/Seo.jsx";
 
 const fallbackCategoryStyle = {
   backgroundColor: "#eef2f7",
@@ -92,6 +93,12 @@ const ColumnList = () => {
 
   return (
     <section className="services section">
+      <Seo
+        title="한결칼럼 | 인천 변호사 법률칼럼"
+        description="공동법률사무소 한결의 한결칼럼입니다. 인천 변호사, 학교폭력, 의료소송, 민사, 형사 등 실제 사건 대응에 도움이 되는 법률 정보를 제공합니다."
+        keywords="한결칼럼, 인천 변호사 칼럼, 인천 학교폭력 변호사, 인천 의료소송 변호사, 공동법률사무소 한결"
+        path="/Column"
+      />
       <div className="container" data-aos="fade-up">
         <div className="row justify-content-center">
           <div className="col-lg-10">
