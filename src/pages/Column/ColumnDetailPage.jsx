@@ -85,6 +85,15 @@ const contentHeadingStyle = `
     white-space: pre;
   }
 
+  .column-detail-content img {
+    display: block;
+    width: min(50%, 420px);
+    max-width: 100%;
+    height: auto;
+    margin: 18px auto;
+    border-radius: 14px;
+  }
+
   .column-detail-content blockquote {
     position: relative;
     margin: 24px auto;
