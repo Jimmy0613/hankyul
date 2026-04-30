@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { supabase } from "../../api/supabase.js";
 import Seo from "../../components/seo/Seo.jsx";
+import { sanitizeHtml } from "../../utils/sanitizeHtml.js";
 
 const fallbackCategoryStyle = {
   backgroundColor: "#eef2f7",
@@ -94,6 +95,12 @@ const contentHeadingStyle = `
     border-radius: 14px;
   }
 
+  .column-detail-content hr {
+    margin: 28px auto;
+    border: 0;
+    border-top: 1px solid #b8c4d3;
+  }
+
   .column-detail-content blockquote {
     position: relative;
     margin: 24px auto;
@@ -109,7 +116,7 @@ const contentHeadingStyle = `
   }
 
   .column-detail-content blockquote::before {
-    content: "❝";
+    content: "“";
     position: absolute;
     top: -10px;
     left: 50%;
@@ -120,7 +127,7 @@ const contentHeadingStyle = `
   }
 
   .column-detail-content blockquote::after {
-    content: "❞";
+    content: "”";
     position: absolute;
     bottom: -26px;
     left: 50%;
@@ -141,7 +148,7 @@ const ColumnDetailPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetchPost = async () => {
       const { data, error } = await supabase
         .from("column_posts")
         .select(
@@ -161,7 +168,7 @@ const ColumnDetailPage = () => {
       setLoading(false);
     };
 
-    fetch();
+    fetchPost();
   }, [id]);
 
   const formatDate = (dateStr) => {
@@ -189,9 +196,7 @@ const ColumnDetailPage = () => {
             <div className="col-lg-9">
               <div style={detailCardStyle}>
                 <h3 className="mb-3">칼럼을 찾을 수 없습니다.</h3>
-                <p className="mb-4 text-muted">
-                  삭제되었거나 아직 공개되지 않은 칼럼일 수 있습니다.
-                </p>
+                <p className="mb-4 text-muted">삭제되었거나 아직 공개되지 않은 칼럼일 수 있습니다.</p>
                 <Link to="/Column" className="btn btn-outline-dark rounded-pill px-4">
                   칼럼 목록으로
                 </Link>
@@ -209,18 +214,19 @@ const ColumnDetailPage = () => {
     backgroundColor: category?.badge_bg_color || fallbackCategoryStyle.backgroundColor,
     color: category?.badge_text_color || fallbackCategoryStyle.color,
   };
-  const previewText = extractPreviewText(post.content).slice(0, 140);
+  const sanitizedContent = sanitizeHtml(post.content || "");
+  const previewText = extractPreviewText(sanitizedContent).slice(0, 140);
   const seoTitle = `${post.title} | 한결칼럼 | 공동법률사무소 한결`;
   const seoDescription =
     previewText ||
-    "공동법률사무소 한결의 한결칼럼 상세 글입니다. 인천 변호사, 학교폭력, 의료소송 등 법률 이슈를 다룹니다.";
+    "공동법률사무소 한결의 한결칼럼 상세 글입니다. 인천 변호사, 학교폭력, 의료분쟁 등 법률 이슈를 다룹니다.";
 
   return (
     <section className="services section">
       <Seo
         title={seoTitle}
         description={seoDescription}
-        keywords={`${post.title}, 한결칼럼, 공동법률사무소 한결, 인천 변호사, 인천 학교폭력 변호사, 인천 의료소송 변호사`}
+        keywords={`${post.title}, 한결칼럼, 공동법률사무소 한결, 인천 변호사, 인천 학교폭력 변호사, 인천 의료분쟁 변호사`}
         path={`/Column/${id}`}
         type="article"
         structuredData={{
@@ -289,7 +295,7 @@ const ColumnDetailPage = () => {
               <div
                 className="column-detail-content"
                 style={contentStyle}
-                dangerouslySetInnerHTML={{ __html: post.content || "" }}
+                dangerouslySetInnerHTML={{ __html: sanitizedContent }}
               />
             </div>
           </div>
