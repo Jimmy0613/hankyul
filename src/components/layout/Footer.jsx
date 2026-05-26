@@ -105,20 +105,6 @@ const Footer = () => {
                                     <img style={{width: '32px', height: '32px', borderRadius: '6px'}}
                                          src="/img/naver_blog.png" alt="한결 공식 블로그"/>
                                 </a>
-
-                                {/* 4. 학교폭력 블로그 (네이버 초록색 배경 + 흰색 아이콘) */}
-                                <a href="https://blog.naver.com/attorney_hambok" target="_blank" rel="noreferrer"
-                                   className="d-flex align-items-center justify-content-center rounded-2 shadow-sm"
-                                   style={{width: '32px', height: '32px', backgroundColor: '#03C75A'}} title="학교폭력 블로그">
-                                    <School size={18} color="#ffffff" strokeWidth={2.5}/>
-                                </a>
-
-                                {/* 5. 의료 블로그 (네이버 초록색 배경 + 흰색 아이콘) */}
-                                <a href="https://blog.naver.com/attorney_hk" target="_blank" rel="noreferrer"
-                                   className="d-flex align-items-center justify-content-center rounded-2 shadow-sm"
-                                   style={{width: '32px', height: '32px', backgroundColor: '#03C75A'}} title="의료 블로그">
-                                    <Stethoscope size={18} color="#ffffff" strokeWidth={2.5}/>
-                                </a>
                             </div>
                             <div className="footer-contact pt-3">
                                 <p><strong>Tel:</strong> <span>032-876-2777</span></p>

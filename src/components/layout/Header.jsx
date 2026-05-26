@@ -57,7 +57,7 @@ const Header = () => {
     return (
         <header id="header" className="header d-flex align-items-center fixed-top">
             <div
-                className="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+                className="container-fluid container-xl position-relative d-flex align-items-center">
 
                 <Link to="/" className="logo d-flex align-items-center me-auto me-lg-0" onClick={closeAllMenus}>
                     <img style={{filter: 'brightness(0) invert(1)'}} src="/img/logo_wide.svg" alt="로고"/>
@@ -118,6 +118,17 @@ const Header = () => {
                                 <li><NavLink to="/Contact/book" onClick={closeAllMenus}>상담예약</NavLink></li>
                             </ul>
                         </li>
+                        <li className="header-blog-nav-item d-none d-xl-block">
+                            <a
+                                className="header-blog-nav-link"
+                                href="https://blog.naver.com/hk-lawyer"
+                                target="_blank"
+                                rel="noreferrer"
+                                onClick={closeAllMenus}
+                            >
+                                <span>한결블로그</span>
+                            </a>
+                        </li>
 
                     </ul>
 
@@ -127,6 +138,20 @@ const Header = () => {
                     ></i>
                 </nav>
 
+                <div className="header-actions">
+                    <Link className="btn-getstarted" to="/Contact/book" onClick={closeAllMenus}>상담예약</Link>
+                </div>
+            </div>
+            <div className="mobile-quick-actions">
+                <a
+                    className="header-blog-link"
+                    href="https://blog.naver.com/hk-lawyer"
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={closeAllMenus}
+                >
+                    한결블로그
+                </a>
                 <Link className="btn-getstarted" to="/Contact/book" onClick={closeAllMenus}>상담예약</Link>
             </div>
         </header>
